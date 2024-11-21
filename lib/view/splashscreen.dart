@@ -19,16 +19,43 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-      body: Center(
-        child: Lottie.asset('asset/Animation - 1732079983335.json'),
+      backgroundColor: Colors.black12,
+      body: Stack(
+        children: [
+          Center(
+            child: Lottie.asset('asset/Animation - 1732079983335.json'),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 156,
+            child: ShaderMask(
+              shaderCallback: (bounds) => LinearGradient(
+                colors: [
+                  const Color.fromARGB(255, 255, 255, 255),
+                  const Color.fromARGB(255, 255, 37, 37),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ).createShader(bounds),
+              child: Text(
+                "Listify...",
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 22,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 
   Future checkInfo() async {
-    Timer(Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/home');
+    Timer(const Duration(seconds: 3), () {
+      Navigator.pushReplacementNamed(context, '/login');
     });
   }
 }

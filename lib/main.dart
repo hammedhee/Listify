@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:listify/view/homeScreen.dart';
+import 'package:listify/view/loginpage.dart';
+import 'package:listify/view/signUpPage.dart';
 import 'package:listify/view/splashscreen.dart';
 
 void main() {
@@ -14,7 +16,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Splashscreen(),
       routes: {
-        '/home' :(context) => Homescreen()
+        '/home' :(context) => Homescreen(),
+        '/login':(context) => Loginpage() ,
+        'signup':(context) => Signuppage(),
       },
     );
   }

@@ -16,11 +16,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Navigationbar(),
+      home: Splashscreen(),
       routes: {
         '/home': (context) => Homescreen(),
         '/login': (context) => Loginpage(),
         'signup': (context) => Signuppage(),
+        'navigation':(context) => Navigationbar()
       },
     );
   }

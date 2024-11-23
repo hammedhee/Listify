@@ -95,7 +95,7 @@ class _LoginpageState extends State<Loginpage> {
                     Gap(40),
                     ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/home');
+                          Navigator.pushNamed(context, 'navigation');
                         },
                         child: Text(' Log in '))
                   ],

@@ -93,7 +93,11 @@ class _LoginpageState extends State<Loginpage> {
                               borderRadius: BorderRadius.circular(30))),
                     ),
                     Gap(40),
-                    ElevatedButton(onPressed: () {}, child: Text(' Log in '))
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/home');
+                        },
+                        child: Text(' Log in '))
                   ],
                 ),
               ),

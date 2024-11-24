@@ -21,22 +21,47 @@ class _HomescreenState extends State<Homescreen> {
             Row(
               children: [
                 Gap(10),
-                Stack(children: [
-                  CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.amberAccent,
-                      child: Center(
-                        child: CircleAvatar(
-                          radius: 40,
-                          child: Image.asset(
-                            'asset/new_defalt_profile_image_for-removebg-preview.png',
-                            fit: BoxFit.contain,
+                Stack(
+                  children: [
+                    Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(
+                            colors: [
+                              const Color.fromARGB(255, 250, 0, 179),
+                              Colors.blueAccent,
+                              Colors.purpleAccent,
+                              Color.fromARGB(255, 255, 6, 6),
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
                           ),
                         ),
-                      ))
-                ])
+                        child: CircleAvatar(
+                          radius: 32,
+                          backgroundColor: Colors.transparent,
+                          child: ClipOval(
+                            child: InkWell(
+                              onTap: () {},
+                              child: Image.asset(
+                                'asset/new_defalt_profile_image_for-removebg-preview.png',
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Gap(10),
+                Text(
+                  'Hy Muhammed',
+                  style: TextStyle(fontSize: 14),
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

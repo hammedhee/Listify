@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:listify/view/homeScreen.dart';
+import 'package:listify/view/homescreen.dart';
 import 'package:listify/view/loginpage.dart';
 import 'package:listify/view/navigationBar.dart';
 import 'package:listify/view/signUpPage.dart';

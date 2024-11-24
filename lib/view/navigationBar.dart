@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:listify/view/addpage.dart';
 import 'package:listify/view/graf.dart';
-import 'package:listify/view/homeScreen.dart';
+import 'package:listify/view/homescreen.dart';
 import 'package:listify/view/settingspage.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 

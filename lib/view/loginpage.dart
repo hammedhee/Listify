@@ -95,7 +95,7 @@ class _LoginpageState extends State<Loginpage> {
                     Gap(40),
                     ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, 'navigation');
+                          Navigator.pushReplacementNamed(context, 'navigation');
                         },
                         child: Text(' Log in '))
                   ],
@@ -122,7 +122,7 @@ class _LoginpageState extends State<Loginpage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, 'signup');
+                    Navigator.pushReplacementNamed(context,'signup');
                   },
                   child: Text(
                     "Sign Up",

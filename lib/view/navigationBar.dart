@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:listify/view/addpage.dart';
 import 'package:listify/view/graf.dart';
 import 'package:listify/view/homescreen.dart';
-import 'package:listify/view/settingspage.dart';
+import 'package:listify/view/profilepage.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class Navigationbar extends StatefulWidget {
@@ -18,7 +18,7 @@ class _NavigationbarState extends State<Navigationbar> {
     Homescreen(),
     Addpage(),
     Graf(),
-    Settingspage()
+    Profilepage()
   ];
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class _NavigationbarState extends State<Navigationbar> {
             SalomonBottomBarItem(
                 icon: Icon(Icons.bar_chart), title: Text('CHART')),
             SalomonBottomBarItem(
-                icon: Icon(Icons.settings), title: Text('SETTINGS'))
+                icon: Icon(Icons.account_circle  ), title: Text('PROFILE'))
           ]),
     );
   }

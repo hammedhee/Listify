@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:listify/view/addpage.dart';
 import 'package:listify/view/graf.dart';
 import 'package:listify/view/homescreen.dart';
@@ -17,7 +18,7 @@ class _NavigationbarState extends State<Navigationbar> {
   final List<Widget> pagesForNavigation = [
     Homescreen(),
     Addpage(),
-    Graf(),
+    Dashboard(),
     Profilepage()
   ];
   @override
@@ -38,7 +39,7 @@ class _NavigationbarState extends State<Navigationbar> {
             SalomonBottomBarItem(
                 icon: Icon(Icons.bar_chart), title: Text('CHART')),
             SalomonBottomBarItem(
-                icon: Icon(Icons.account_circle  ), title: Text('PROFILE'))
+                icon: Icon(Icons.account_circle), title: Text('Account'))
           ]),
     );
   }

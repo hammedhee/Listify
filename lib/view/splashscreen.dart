@@ -30,10 +30,7 @@ class _SplashscreenState extends State<Splashscreen> {
             right: 156,
             child: ShaderMask(
               shaderCallback: (bounds) => LinearGradient(
-                colors: [
-                  Colors.blue,
-                  Colors.purple,
-                ],
+                colors: [Colors.redAccent, Colors.white],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ).createShader(bounds),

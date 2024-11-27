@@ -21,7 +21,7 @@ class _ProfilepageState extends State<Profilepage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Gap(10),
+            Gap(60),
             Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -61,15 +61,16 @@ class _ProfilepageState extends State<Profilepage> {
                           child: containerforprofile('User details')),
                       Gap(40),
                       GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, 'tearms');
+                          },
                           child: containerforprofile('Terms and conditions')),
                       Gap(40),
                       GestureDetector(
-                          onTap: () {},
-                          child: containerforprofile('User arguments')),
-                      Gap(40),
-                      GestureDetector(
-                          onTap: () {}, child: containerforprofile('Help')),
+                          onTap: () {
+                            Navigator.pushNamed(context, 'help');
+                          },
+                          child: containerforprofile('Help & Support')),
                       Gap(40),
                       GestureDetector(
                         onTap: () {
@@ -82,11 +83,16 @@ class _ProfilepageState extends State<Profilepage> {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20)),
                           child: Center(
-                              child: Text(
-                            'Log out',
-                            style: TextStyle(
-                                fontSize: 16, color: Colors.redAccent),
-                          )),
+                              child: TextButton(
+                                  onPressed: () {
+                                    Navigator.pushReplacementNamed(
+                                        context, '/login');
+                                  },
+                                  child: Text(
+                                    'Log out',
+                                    style: TextStyle(
+                                        fontSize: 16, color: Colors.redAccent),
+                                  ))),
                         ),
                       ),
                       Gap(40)

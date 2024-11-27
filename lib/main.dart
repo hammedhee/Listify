@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:listify/view/helppage.dart';
 import 'package:listify/view/homescreen.dart';
 import 'package:listify/view/loginpage.dart';
 import 'package:listify/view/navigationBar.dart';
 import 'package:listify/view/signUpPage.dart';
 import 'package:listify/view/splashscreen.dart';
+import 'package:listify/view/tearmsAndConditionpage.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,7 +23,9 @@ class MyApp extends StatelessWidget {
         '/home': (context) => Homescreen(),
         '/login': (context) => Loginpage(),
         'signup': (context) => Signuppage(),
-        'navigation':(context) => Navigationbar()
+        'navigation': (context) => Navigationbar(),
+        'tearms': (context) => TermsAndConditionsPage(),
+        'help': (context) => HelpPage()
       },
     );
   }

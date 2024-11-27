@@ -25,18 +25,8 @@ class _HomescreenState extends State<Homescreen> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromARGB(255, 250, 0, 179),
-                          Colors.blueAccent,
-                          Colors.purpleAccent,
-                          Color.fromARGB(255, 255, 6, 6),
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                    ),
+                        shape: BoxShape.circle,
+                        color: const Color.fromARGB(255, 144, 56, 185)),
                     child: CircleAvatar(
                       radius: 32,
                       backgroundColor: Colors.transparent,
@@ -68,8 +58,7 @@ class _HomescreenState extends State<Homescreen> {
                 width: double.infinity,
                 padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [Colors.blueAccent, Colors.purpleAccent]),
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(30),
                 ),
                 child: Padding(
@@ -85,7 +74,9 @@ class _HomescreenState extends State<Homescreen> {
                                 'Vegetable List', 'asset/veg for listyfy.png'),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, 'fruitspage');
+                            },
                             child: homePageNavigationContainer(
                                 'Fruits List', 'asset/fruits for listify.png'),
                           ),
@@ -129,7 +120,7 @@ class _HomescreenState extends State<Homescreen> {
         boxShadow: [
           BoxShadow(
             color: Colors.black12,
-            blurRadius: 4,
+            blurRadius: 5,
             offset: Offset(2, 2),
           ),
         ],

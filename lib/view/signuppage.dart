@@ -10,6 +10,12 @@ class Signuppage extends StatefulWidget {
 }
 
 class _SignuppageState extends State<Signuppage> {
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController maileController = TextEditingController();
+
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,13 +23,10 @@ class _SignuppageState extends State<Signuppage> {
         child: Column(
           children: [
             Gap(35),
-            Container(
-              height: 250,
-              width: 250,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 1),
-                child: Lottie.asset('asset/Animation - 1732181932124.json'),
-              ),
+            Padding(
+              padding: const EdgeInsets.only(right: 1),
+              child: Lottie.asset('asset/Animation - 1732181932124.json',
+                  height: 180     , width: 180),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -35,10 +38,7 @@ class _SignuppageState extends State<Signuppage> {
                 Gap(5),
                 ShaderMask(
                   shaderCallback: (bounds) => LinearGradient(
-                    colors: [
-                      Colors.purple,
-                      Colors.blue,
-                    ],
+                    colors: [Colors.purpleAccent, Colors.blueAccent],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ).createShader(bounds),
@@ -53,7 +53,7 @@ class _SignuppageState extends State<Signuppage> {
                 ),
               ],
             ),
-            Gap(14),
+            Gap(10),
             Text(
               '"Sign up today and turn your grocery chaos into a',
               style: TextStyle(
@@ -66,57 +66,140 @@ class _SignuppageState extends State<Signuppage> {
                   color: const Color.fromARGB(255, 93, 93, 93),
                   fontStyle: FontStyle.italic),
             ),
-            Gap(30),
+            Gap(10),
             Container(
-              height: 340,
               width: 350,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  children: [
-                    Gap(55),
-                    TextField(
-                      decoration: InputDecoration(
-                          hintText: 'Username',
-                          hintStyle: TextStyle(
-                              color: const Color.fromARGB(255, 128, 128, 128)),
-                          prefixIcon: Icon(Icons.person),
-                          filled: true,
-                          fillColor: const Color.fromARGB(255, 243, 250, 255),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30))),
+                child: SingleChildScrollView(
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        Gap(20),
+                        TextFormField(
+                          controller: userNameController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your username.';
+                            } else {
+                              return null;
+                            }
+                          },
+                          decoration: InputDecoration(
+                              errorStyle: TextStyle(
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255)),
+                              hintText: 'Username',
+                              hintStyle: TextStyle(
+                                  color:
+                                      const Color.fromARGB(255, 128, 128, 128)),
+                              prefixIcon: Icon(Icons.person),
+                              filled: true,
+                              fillColor:
+                                  const Color.fromARGB(255, 243, 250, 255),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30))),
+                        ),
+                        Gap(20),
+                        TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your password.';
+                            } else {
+                              return null;
+                            }
+                          },
+                          controller: passwordController,
+                          decoration: InputDecoration(
+                              errorStyle: TextStyle(
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255)),
+                              hintText: 'Password',
+                              hintStyle: TextStyle(
+                                  color:
+                                      const Color.fromARGB(255, 128, 128, 128)),
+                              prefixIcon: Icon(Icons.password),
+                              filled: true,
+                              fillColor:
+                                  const Color.fromARGB(255, 243, 250, 255),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30))),
+                        ),
+                        Gap(20),
+                        TextFormField(
+                          controller: phoneNumberController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your Phone Number.';
+                            } else {
+                              return null;
+                            }
+                          },
+                          decoration: InputDecoration(
+                              errorStyle: TextStyle(
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255)),
+                              hintText: 'Phone Number',
+                              hintStyle: TextStyle(
+                                  color:
+                                      const Color.fromARGB(255, 128, 128, 128)),
+                              prefixIcon: Icon(Icons.phone),
+                              filled: true,
+                              fillColor:
+                                  const Color.fromARGB(255, 243, 250, 255),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30))),
+                        ),
+                        Gap(20),
+                        TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your email id.';
+                            } else {
+                              return null;
+                            }
+                          },
+                          controller: maileController,
+                          decoration: InputDecoration(
+                              errorStyle: TextStyle(
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255)),
+                              hintText: 'Email Id',
+                              hintStyle: TextStyle(
+                                  color:
+                                      const Color.fromARGB(255, 128, 128, 128)),
+                              prefixIcon: Icon(Icons.phone),
+                              filled: true,
+                              fillColor:
+                                  const Color.fromARGB(255, 243, 250, 255),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30))),
+                        ),
+                        Gap(20),
+                        ElevatedButton(
+                            onPressed: () {
+                              if (formKey.currentState?.validate() == true) {
+                                Navigator.pushNamed(context, '/home');
+                              }
+                            },
+                            child: Text('Register now')),
+                        Gap(20)
+                      ],
                     ),
-                    Gap(40),
-                    TextField(
-                      decoration: InputDecoration(
-                          hintText: 'Password',
-                          hintStyle: TextStyle(
-                              color: const Color.fromARGB(255, 128, 128, 128)),
-                          prefixIcon: Icon(Icons.password),
-                          filled: true,
-                          fillColor: const Color.fromARGB(255, 243, 250, 255),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30))),
-                    ),
-                    Gap(40),
-                    ElevatedButton(
-                        onPressed: () {}, child: Text('Register now'))
-                  ],
+                  ),
                 ),
               ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 gradient: LinearGradient(
-                  colors: [
-                    Colors.purple,
-                    Colors.blue,
-                  ],
+                  colors: [Colors.purple, Colors.blue],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
               ),
             ),
-            Gap(25),
+            Gap(5),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

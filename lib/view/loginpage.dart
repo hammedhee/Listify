@@ -10,6 +10,9 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,11 +20,8 @@ class _LoginpageState extends State<Loginpage> {
         child: Column(
           children: [
             Gap(35),
-            Container(
-              height: 250,
-              width: 250,
-              child: Lottie.asset('asset/signup animation.json'),
-            ),
+            Lottie.asset('asset/signup animation.json',
+                height: 250, width: 250),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -62,43 +62,69 @@ class _LoginpageState extends State<Loginpage> {
             ),
             Gap(30),
             Container(
-              height: 340,
               width: 350,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  children: [
-                    Gap(55),
-                    TextField(
-                      decoration: InputDecoration(
-                          hintText: 'Username',
-                          hintStyle: TextStyle(
-                              color: const Color.fromARGB(255, 128, 128, 128)),
-                          prefixIcon: Icon(Icons.person),
-                          filled: true,
-                          fillColor: const Color.fromARGB(255, 243, 250, 255),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30))),
-                    ),
-                    Gap(40),
-                    TextField(
-                      decoration: InputDecoration(
-                          hintText: 'Password',
-                          hintStyle: TextStyle(
-                              color: const Color.fromARGB(255, 128, 128, 128)),
-                          prefixIcon: Icon(Icons.password),
-                          filled: true,
-                          fillColor: const Color.fromARGB(255, 243, 250, 255),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30))),
-                    ),
-                    Gap(40),
-                    ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushReplacementNamed(context, 'navigation');
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      Gap(40),
+                      TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your username!!.';
+                          } else {
+                            return null;
+                          }
                         },
-                        child: Text(' Log in '))
-                  ],
+                        controller: usernameController,
+                        decoration: InputDecoration(
+                            errorStyle: TextStyle(color: Colors.white),
+                            hintText: 'Username',
+                            hintStyle: TextStyle(
+                                color:
+                                    const Color.fromARGB(255, 128, 128, 128)),
+                            prefixIcon: Icon(Icons.person),
+                            filled: true,
+                            fillColor: const Color.fromARGB(255, 243, 250, 255),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30))),
+                      ),
+                      Gap(40),
+                      TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your username!!.';
+                          } else {
+                            return null;
+                          }
+                        },
+                        controller: passwordController,
+                        decoration: InputDecoration(
+                            errorStyle: TextStyle(color: Colors.white),
+                            hintText: 'Password',
+                            hintStyle: TextStyle(
+                                color:
+                                    const Color.fromARGB(255, 128, 128, 128)),
+                            prefixIcon: Icon(Icons.password),
+                            filled: true,
+                            fillColor: const Color.fromARGB(255, 243, 250, 255),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30))),
+                      ),
+                      Gap(40),
+                      ElevatedButton(
+                          onPressed: () {
+                            if (formKey.currentState?.validate() == true) {
+                              Navigator.pushReplacementNamed(
+                                  context, 'navigation');
+                            }
+                          },
+                          child: Text(' Log in ')),
+                      Gap(40)
+                    ],
+                  ),
                 ),
               ),
               decoration: BoxDecoration(
@@ -122,7 +148,7 @@ class _LoginpageState extends State<Loginpage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacementNamed(context,'signup');
+                    Navigator.pushReplacementNamed(context, 'signup');
                   },
                   child: Text(
                     "Sign Up",

@@ -33,8 +33,6 @@ class _AddpageState extends State<Addpage> {
                 width: 350,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  gradient: LinearGradient(
-                      colors: [Colors.blueAccent, Colors.purpleAccent]),
                 ),
                 child: Column(
                   children: [
@@ -48,6 +46,12 @@ class _AddpageState extends State<Addpage> {
                       width: 280,
                       decoration: BoxDecoration(
                         color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 4,
+                              offset: Offset(2, 2))
+                        ],
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Column(
@@ -93,12 +97,27 @@ class _AddpageState extends State<Addpage> {
                       ),
                     ),
                     Gap(15),
-                    ElevatedButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Add To List',
-                          style: TextStyle(color: Colors.black),
-                        )),
+                    Container(
+                      height: 50,
+                      width: 130,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 5,
+                              offset: Offset(2, 2))
+                        ],
+                        borderRadius: BorderRadius.circular(10),
+                        color: Color.fromARGB(255, 255, 254, 255),
+                      ),
+                      child: Center(
+                          child: TextButton(
+                              onPressed: () {},
+                              child: Text(
+                                'ADD TO LIST',
+                                style: TextStyle(color: Colors.black),
+                              ))),
+                    ),
                     Gap(10),
                   ],
                 ),
@@ -137,6 +156,9 @@ class _AddpageState extends State<Addpage> {
       height: 110,
       width: 280,
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(color: Colors.black12, blurRadius: 4, offset: Offset(2, 2))
+        ],
         borderRadius: BorderRadius.circular(20),
         color: Color.fromARGB(255, 255, 254, 255),
       ),

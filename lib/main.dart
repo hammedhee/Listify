@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:listify/view/fruitslistpage.dart';
 import 'package:listify/view/helppage.dart';
 import 'package:listify/view/homescreen.dart';
 import 'package:listify/view/loginpage.dart';
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
         'signup': (context) => Signuppage(),
         'navigation': (context) => Navigationbar(),
         'tearms': (context) => TermsAndConditionsPage(),
-        'help': (context) => HelpPage()
+        'help': (context) => HelpPage(),
+        'fruitspage': (context) => Fruitslistpage(),
       },
     );
   }

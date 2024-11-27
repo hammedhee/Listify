@@ -18,7 +18,7 @@ class _ProfilepageState extends State<Profilepage> {
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         title: Text('Accounts'),
       ),
-      body: SingleChildScrollView(
+       body: SingleChildScrollView(
         child: Column(
           children: [
             Gap(60),
@@ -37,7 +37,7 @@ class _ProfilepageState extends State<Profilepage> {
                       Gap(30),
                       InkWell(
                         onTap: () {
-                          // for user image update
+                         
                         },
                         child: CircleAvatar(
                           radius: 35,

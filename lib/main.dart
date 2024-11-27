@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:listify/model/userdataModel.dart';
 import 'package:listify/view/fruitslistpage.dart';
 import 'package:listify/view/helppage.dart';
 import 'package:listify/view/homescreen.dart';
@@ -8,7 +11,10 @@ import 'package:listify/view/signUpPage.dart';
 import 'package:listify/view/splashscreen.dart';
 import 'package:listify/view/tearmsAndConditionpage.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(UsreDataAdapter());
   runApp(MyApp());
 }
 

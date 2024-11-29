@@ -119,7 +119,8 @@ class _HomescreenState extends State<Homescreen> {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            blurRadius: 5,
+            blurRadius: 4,
+            color: const Color.fromARGB(31, 0, 0, 0),
             offset: Offset(2, 2),
           ),
         ],

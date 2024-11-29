@@ -27,7 +27,7 @@ class _HelpPageState extends State<HelpPage> {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                ), 
+                ),
               ),
               SizedBox(height: 16),
               Text(
@@ -129,7 +129,9 @@ class _HelpPageState extends State<HelpPage> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 124, 218, 255),
                   shape: RoundedRectangleBorder(

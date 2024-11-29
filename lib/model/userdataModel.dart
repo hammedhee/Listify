@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 part 'userdataModel.g.dart';
+
 @HiveType(typeId: 0)
 class UsreData {
   @HiveField(0)
@@ -10,9 +11,12 @@ class UsreData {
   String? phoneNumber;
   @HiveField(3)
   String? mailId;
+  @HiveField(4)
+  String? profileimagepath;
   UsreData(
       {required this.userName,
       required this.passWord,
       required this.phoneNumber,
-      required this.mailId});
+      required this.mailId,
+      this.profileimagepath});
 }

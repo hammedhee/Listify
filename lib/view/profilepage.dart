@@ -12,112 +12,149 @@ class _ProfilepageState extends State<Profilepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        title: Text('Accounts'),
+        leading: Icon(Icons.person),
+        title: Text("ACCOUNT'S"),
       ),
-       body: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            Gap(60),
             Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [Colors.blueAccent, Colors.purpleAccent]),
-                      color: const Color.fromARGB(255, 196, 196, 196),
-                      borderRadius: BorderRadius.circular(30)),
-                  child: Column(
-                    children: [
-                      Gap(30),
-                      InkWell(
-                        onTap: () {
-                         
-                        },
-                        child: CircleAvatar(
-                          radius: 35,
-                          backgroundColor:
-                              const Color.fromARGB(255, 252, 251, 250),
-                          child: Image.asset(
-                              'asset/new_defalt_profile_image_for-removebg-preview.png'),
+              child: Container(
+                width: 320,
+                child: Card(
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  elevation: 15,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 144, 56, 185),
+                              radius: 35,
+                              child: Center(
+                                child: Image.asset(
+                                    'asset/new_defalt_profile_image_for-removebg-preview.png'),
+                              ),
+                            ),
+                            Gap(10),
+                            Text(
+                              'Muhammed nk',
+                              style: TextStyle(fontSize: 17),
+                            ),
+                          ],
                         ),
-                      ),
-                      Gap(16),
-                      Text(
-                        'Muhammed',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w900),
-                      ),
-                      Gap(40),
-                      GestureDetector(
-                          onTap: () {},
-                          child: containerforprofile('User details')),
-                      Gap(40),
-                      GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, 'tearms');
-                          },
-                          child: containerforprofile('Terms and conditions')),
-                      Gap(40),
-                      GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, 'help');
-                          },
-                          child: containerforprofile('Help & Support')),
-                      Gap(40),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(context, '/login');
-                        },
-                        child: Container(
-                          height: 50,
-                          width: 260,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Center(
-                              child: TextButton(
-                                  onPressed: () {
-                                    Navigator.pushReplacementNamed(
-                                        context, '/login');
-                                  },
-                                  child: Text(
-                                    'Log out',
-                                    style: TextStyle(
-                                        fontSize: 16, color: Colors.redAccent),
-                                  ))),
+                        Gap(10),
+                        ExpansionTile(
+                          title: Text('Password'),
+                          children: [
+                            Text('PASSWORD : muhammedsha@123'),
+                            Gap(10)
+                          ],
                         ),
-                      ),
-                      Gap(40)
-                    ],
+                        Gap(10),
+                        ExpansionTile(
+                          title: Text('Mail Address'),
+                          children: [
+                            Text('MAIL ID : Muhammednk536@gmail.com'),
+                            Gap(10)
+                          ],
+                        ),
+                        Gap(10),
+                        ExpansionTile(
+                          title: Text('Mobile Number'),
+                          children: [
+                            Text('PHONE NUMBER : 9037356018'),
+                            Gap(10)
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
+            Gap(30),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 100,
+                    width: 170,
+                    child: Card(
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      elevation: 10,
+                      child: Center(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, "help");
+                          },
+                          child: Text(
+                            "Help",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 100,
+                    width: 170,
+                    child: Card(
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      elevation: 10,
+                      child: Center(
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, "/login");
+                          },
+                          child: Text(
+                            "Sign out ",
+                            style: TextStyle(
+                                color: Colors.redAccent,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Gap(10),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Container(
+                height: 80,
+                width: double.infinity,
+                child: Card(
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  elevation: 10,
+                  child: Center(
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, "tearms");
+                      },
+                      child: Text(
+                        "Terms & Condition",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
-    );
-  }
-
-  Container containerforprofile(String text) {
-    return Container(
-      height: 50,
-      width: 260,
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(20)),
-      child: Center(
-          child: Text(
-        text,
-        style: TextStyle(fontSize: 16),
-      )),
     );
   }
 }

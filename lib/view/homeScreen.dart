@@ -31,19 +31,16 @@ class _HomescreenState extends State<Homescreen> {
                       radius: 32,
                       backgroundColor: Colors.transparent,
                       child: ClipOval(
-                        child: InkWell(
-                          onTap: () {},
-                          child: Image.asset(
-                            'asset/new_defalt_profile_image_for-removebg-preview.png',
-                            fit: BoxFit.cover,
-                          ),
+                        child: Image.asset(
+                          'asset/new_defalt_profile_image_for-removebg-preview.png',
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
                   ),
                   Gap(10),
                   Text(
-                    'Hi Muhammed',
+                    'Hy Muhammed  ',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ],

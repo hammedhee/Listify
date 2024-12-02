@@ -142,10 +142,7 @@ class _AddpageState extends State<Addpage> {
           style: TextStyle(fontSize: 15),
         ),
         Gap(10),
-        Checkbox(
-          value: value,
-          onChanged: onChanged,
-        ),
+        RadioListTile(value: value, groupValue: value, onChanged: onChanged),
         Gap(10),
       ],
     );

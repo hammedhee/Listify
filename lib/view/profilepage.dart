@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:hive/hive.dart';
 import 'package:listify/function/userdatafunctions.dart';
+import 'package:listify/model/userdataModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Profilepage extends StatefulWidget {
@@ -163,7 +165,16 @@ class _ProfilepageState extends State<Profilepage> {
                   ),
                 ),
               ),
-            )
+            ),
+            // TextButton(
+            //     onPressed: () {
+            //       Navigator.push(
+            //           context,
+            //           MaterialPageRoute(
+            //             builder: (context) => Loginpage(),
+            //           ));
+            //     },
+            //     child: Text('login'))
           ],
         ),
       ),
@@ -172,7 +183,11 @@ class _ProfilepageState extends State<Profilepage> {
 
   Future logutbtn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    final userDataBox = await Hive.openBox<UsreData>('userdeteals');
     prefs.setBool('isLoggedIn', false);
+    userDataBox.clear();
+    userDataNotifire.value.clear();
+    prefs.clear();
     Navigator.pushReplacementNamed(context, "login");
   }
 }

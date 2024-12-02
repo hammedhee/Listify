@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:listify/function/userdatafunctions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Profilepage extends StatefulWidget {
   const Profilepage({super.key});
@@ -20,61 +22,71 @@ class _ProfilepageState extends State<Profilepage> {
         child: Column(
           children: [
             Center(
-              child: Container(
-                width: 320,
-                child: Card(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  elevation: 15,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Row(
+              child: ValueListenableBuilder(
+                valueListenable: userDataNotifire,
+                builder: (context, value, child) {
+                  return Container(
+                    width: 320,
+                    child: Card(
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      elevation: 15,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
                           children: [
-                            CircleAvatar(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 144, 56, 185),
-                              radius: 35,
-                              child: Center(
-                                child: Image.asset(
-                                    'asset/new_defalt_profile_image_for-removebg-preview.png'),
-                              ),
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 144, 56, 185),
+                                  radius: 35,
+                                  child: Center(
+                                    child: Image.asset(
+                                        'asset/new_defalt_profile_image_for-removebg-preview.png'),
+                                  ),
+                                ),
+                                Gap(10),
+                                Text(
+                                  value.first.userName.toString(),
+                                  style: TextStyle(fontSize: 17),
+                                ),
+                              ],
                             ),
                             Gap(10),
-                            Text(
-                              'Muhammed nk',
-                              style: TextStyle(fontSize: 17),
+                            ExpansionTile(
+                              title: Text('Password'),
+                              children: [
+                                Text(
+                                  value.first.passWord.toString(),
+                                  style: TextStyle(fontSize: 17),
+                                ),
+                                Gap(10)
+                              ],
+                            ),
+                            Gap(10),
+                            ExpansionTile(
+                              title: Text('Mail Address'),
+                              children: [
+                                Text('E-Mail Address'),
+                                Text(value.first.mailId.toString()),
+                                Gap(10)
+                              ],
+                            ),
+                            Gap(10),
+                            ExpansionTile(
+                              title: Text('Mobile Number'),
+                              children: [
+                                Text('Mobile Number'),
+                                Text(value.first.phoneNumber.toString()),
+                                Gap(10)
+                              ],
                             ),
                           ],
                         ),
-                        Gap(10),
-                        ExpansionTile(
-                          title: Text('Password'),
-                          children: [
-                            Text('PASSWORD : muhammedsha@123'),
-                            Gap(10)
-                          ],
-                        ),
-                        Gap(10),
-                        ExpansionTile(
-                          title: Text('Mail Address'),
-                          children: [
-                            Text('MAIL ID : Muhammednk536@gmail.com'),
-                            Gap(10)
-                          ],
-                        ),
-                        Gap(10),
-                        ExpansionTile(
-                          title: Text('Mobile Number'),
-                          children: [
-                            Text('PHONE NUMBER : 9037356018'),
-                            Gap(10)
-                          ],
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
             ),
             Gap(30),
@@ -112,7 +124,7 @@ class _ProfilepageState extends State<Profilepage> {
                       child: Center(
                         child: TextButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, "/login");
+                            logutbtn();
                           },
                           child: Text(
                             "Sign out ",
@@ -156,5 +168,11 @@ class _ProfilepageState extends State<Profilepage> {
         ),
       ),
     );
+  }
+
+  Future logutbtn() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isLoggedIn', false);
+    Navigator.pushReplacementNamed(context, "login");
   }
 }

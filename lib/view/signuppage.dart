@@ -1,6 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:listify/function/userdatafunctions.dart';
+import 'package:listify/model/userdataModel.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Signuppage extends StatefulWidget {
   const Signuppage({super.key});
@@ -26,7 +31,7 @@ class _SignuppageState extends State<Signuppage> {
             Padding(
               padding: const EdgeInsets.only(right: 1),
               child: Lottie.asset('asset/Animation - 1732181932124.json',
-                  height: 180     , width: 180),
+                  height: 180, width: 180),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -180,7 +185,7 @@ class _SignuppageState extends State<Signuppage> {
                         ElevatedButton(
                             onPressed: () {
                               if (formKey.currentState?.validate() == true) {
-                                Navigator.pushNamed(context, '/home');
+                                registerBtn();
                               }
                             },
                             child: Text('Register now')),
@@ -225,5 +230,31 @@ class _SignuppageState extends State<Signuppage> {
         ),
       ),
     );
+  }
+
+  Future registerBtn() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final username = userNameController.text.trim();
+    final password = passwordController.text.trim();
+    final phone = phoneNumberController.text.trim();
+    final email = maileController.text.trim();
+
+    if (username.isEmpty ||
+        password.isEmpty && phone.isEmpty ||
+        email.isEmpty) {
+      return;
+    } else {
+      final data = UsreData(
+          userName: username,
+          passWord: password,
+          phoneNumber: phone,
+          mailId: email);
+      addUserData(data);
+      log(data.userName.toString());
+      await prefs.setString('username', username);
+      await prefs.setString('password', password);
+      await prefs.setBool('isLoggedIn', true);
+    }
+    Navigator.pushReplacementNamed(context, "navigation");
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Splashscreen extends StatefulWidget {
   const Splashscreen({super.key});
@@ -51,8 +52,14 @@ class _SplashscreenState extends State<Splashscreen> {
   }
 
   Future checkInfo() async {
-    Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/login');
+    Timer(const Duration(seconds: 3), () async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final isloggedIn = prefs.getBool('isLoggedIn') ?? false;
+      if (isloggedIn) {
+        Navigator.pushReplacementNamed(context, 'navigation');
+      } else {
+        Navigator.pushReplacementNamed(context, "login");
+      }
     });
   }
 }

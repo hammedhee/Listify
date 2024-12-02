@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -117,8 +118,7 @@ class _LoginpageState extends State<Loginpage> {
                       ElevatedButton(
                           onPressed: () {
                             if (formKey.currentState?.validate() == true) {
-                              Navigator.pushReplacementNamed(
-                                  context, 'navigation');
+                              loginbtn();
                             }
                           },
                           child: Text(' Log in ')),
@@ -164,5 +164,39 @@ class _LoginpageState extends State<Loginpage> {
         ),
       ),
     );
+  }
+
+  Future loginbtn() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final loginUsername = usernameController.text.trim();
+    final loginPassword = passwordController.text.trim();
+    final saveUserName = prefs.getString('username');
+    final savedPassword = prefs.getString('password');
+    if (loginUsername == saveUserName && loginPassword == savedPassword) {
+      await prefs.setBool('isLoggedIn', true);
+      Navigator.pushReplacementNamed(context, "navigation");
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              'Login Failed !!',
+            ),
+            content: Text('Invalid username or password. Please try again.'),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'OK',
+                    style: TextStyle(fontSize: 18),
+                  ))
+            ],
+          );
+        },
+      );
+    }
   }
 }

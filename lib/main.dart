@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:listify/model/groceryList.dart';
 import 'package:listify/model/userdataModel.dart';
 import 'package:listify/view/fruitslistpage.dart';
 import 'package:listify/view/helppage.dart';
@@ -14,6 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(UsreDataAdapter());
+  Hive.registerAdapter(GroceryListDataAdapter());
   runApp(MyApp());
 }
 

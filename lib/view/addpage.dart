@@ -10,11 +10,10 @@ class Addpage extends StatefulWidget {
   State<Addpage> createState() => _AddpageState();
 }
 
+List<String> options = ["Fruits", "Vegetable", "Powders", "Others"];
+
 class _AddpageState extends State<Addpage> {
-  bool fruitsBoxValue = false;
-  bool powdersBoxValue = false;
-  bool vegetableBoxValue = false;
-  bool othersBoxValue = false;
+  String currentOption = options[0];
 
   @override
   Widget build(BuildContext context) {
@@ -34,92 +33,81 @@ class _AddpageState extends State<Addpage> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: Column(
-                  children: [
-                    Gap(15),
-                    foraddpagecontainer('Grocery Name', 'Enter Grocery Name'),
-                    Gap(10),
-                    foraddpagecontainer('Quantity', 'Enter The Quantity'),
-                    Gap(10),
-                    Container(
-                      height: 150,
-                      width: 280,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 4,
-                              offset: Offset(2, 2))
-                        ],
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Column(
-                        children: [
-                          Gap(15),
-                          Text(
-                            'Category',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Row(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Gap(15),
+                      foraddpagecontainer('Grocery Name', 'Enter Grocery Name'),
+                      Gap(10),
+                      foraddpagecontainer('Quantity', 'Enter The Quantity'),
+                      Gap(10),
+                      Container(
+                        width: 280,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Color.fromARGB(255, 255, 254, 255),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  blurRadius: 5,
+                                  offset: Offset(2, 2))
+                            ]),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
                             children: [
-                              addPageCatagory(fruitsBoxValue, 'Fruits',
-                                  (value) {
-                                setState(() {
-                                  fruitsBoxValue = value!;
-                                });
-                              }),
-                              addPageCatagory(powdersBoxValue, 'Powders',
-                                  (value) {
-                                setState(() {
-                                  powdersBoxValue = value!;
-                                });
-                              }),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('Fruits'),
+                                  radiobuttem(0),
+                                  Text('Vegetable'),
+                                  radiobuttem(1),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('Powders'),
+                                  radiobuttem(2),
+                                  Text('Others'),
+                                  radiobuttem(3),
+                                ],
+                              ),
                             ],
                           ),
-                          Row(
-                            children: [
-                              addPageCatagory(vegetableBoxValue, 'Vegetable',
-                                  (value) {
-                                setState(() {
-                                  vegetableBoxValue = value!;
-                                });
-                              }),
-                              addPageCatagory(othersBoxValue, 'Others',
-                                  (value) {
-                                setState(() {
-                                  othersBoxValue = value!;
-                                });
-                              }),
-                            ],
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                    Gap(15),
-                    Container(
-                      height: 50,
-                      width: 130,
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 5,
-                              offset: Offset(2, 2))
-                        ],
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color.fromARGB(255, 255, 254, 255),
+                      Gap(15),
+                      Container(
+                        height: 50,
+                        width: 130,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 5,
+                                offset: Offset(2, 2))
+                          ],
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color.fromARGB(255, 255, 254, 255),
+                        ),
+                        child: Center(
+                            child: TextButton(
+                                onPressed: () {
+                                  print(currentOption);
+                                },
+                                child: Text(
+                                  'ADD TO LIST',
+                                  style: TextStyle(color: Colors.black),
+                                ))),
                       ),
-                      child: Center(
-                          child: TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                'ADD TO LIST',
-                                style: TextStyle(color: Colors.black),
-                              ))),
-                    ),
-                    Gap(10),
-                  ],
+                      Gap(10),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -129,23 +117,15 @@ class _AddpageState extends State<Addpage> {
     );
   }
 
-  Row addPageCatagory(
-    bool value,
-    String text,
-    void Function(bool?) onChanged,
-  ) {
-    return Row(
-      children: [
-        Gap(12),
-        Text(
-          text,
-          style: TextStyle(fontSize: 15),
-        ),
-        Gap(10),
-        RadioListTile(value: value, groupValue: value, onChanged: onChanged),
-        Gap(10),
-      ],
-    );
+  Radio<String> radiobuttem(int intex) {
+    return Radio(
+        value: options[intex],
+        groupValue: currentOption,
+        onChanged: (value) {
+          setState(() {
+            currentOption = value.toString();
+          });
+        });
   }
 
   Container foraddpagecontainer(String text, String text2) {

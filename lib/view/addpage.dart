@@ -1,6 +1,13 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:listify/function/groseryListFunctions.dart';
+import 'package:listify/model/groceryList.dart';
+import 'package:listify/view/fruitslistpage.dart';
+import 'package:listify/view/homescreen.dart';
+import 'package:listify/view/navigationBar.dart';
 import 'package:lottie/lottie.dart';
 
 class Addpage extends StatefulWidget {
@@ -13,8 +20,9 @@ class Addpage extends StatefulWidget {
 List<String> options = ["Fruits", "Vegetable", "Powders", "Others"];
 
 class _AddpageState extends State<Addpage> {
-  String currentOption = options[0];
-
+  String? currentOption;
+  TextEditingController groceryNameController = TextEditingController();
+  TextEditingController quantityController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,9 +46,15 @@ class _AddpageState extends State<Addpage> {
                   child: Column(
                     children: [
                       Gap(15),
-                      foraddpagecontainer('Grocery Name', 'Enter Grocery Name'),
+                      foraddpagecontainer(
+                          text: 'Grocery Name',
+                          text2: 'Enter Grocery Name',
+                          controller: groceryNameController),
                       Gap(10),
-                      foraddpagecontainer('Quantity', 'Enter The Quantity'),
+                      foraddpagecontainer(
+                          text: 'Quantity',
+                          text2: 'Enter The Quantity',
+                          controller: quantityController),
                       Gap(10),
                       Container(
                         width: 280,
@@ -82,28 +96,28 @@ class _AddpageState extends State<Addpage> {
                         ),
                       ),
                       Gap(15),
-                      Container(
-                        height: 50,
-                        width: 130,
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 5,
-                                offset: Offset(2, 2))
-                          ],
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color.fromARGB(255, 255, 254, 255),
-                        ),
-                        child: Center(
-                            child: TextButton(
-                                onPressed: () {
-                                  print(currentOption);
-                                },
+                      GestureDetector(
+                        onTap: () {
+                          saveListBtn();
+                        },
+                        child: Container(
+                            height: 50,
+                            width: 130,
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    blurRadius: 5,
+                                    offset: Offset(2, 2))
+                              ],
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color.fromARGB(255, 255, 254, 255),
+                            ),
+                            child: Center(
                                 child: Text(
-                                  'ADD TO LIST',
-                                  style: TextStyle(color: Colors.black),
-                                ))),
+                              'ADD TO LIST',
+                              style: TextStyle(color: Colors.black),
+                            ))),
                       ),
                       Gap(10),
                     ],
@@ -128,7 +142,8 @@ class _AddpageState extends State<Addpage> {
         });
   }
 
-  Container foraddpagecontainer(String text, String text2) {
+  Container foraddpagecontainer(
+      {String? text, String? text2, TextEditingController? controller}) {
     return Container(
       height: 110,
       width: 280,
@@ -144,10 +159,11 @@ class _AddpageState extends State<Addpage> {
         children: [
           Gap(10),
           Text(
-            text,
+            text!,
             style: TextStyle(fontSize: 18),
           ),
           TextField(
+            controller: controller,
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: text2,
@@ -157,5 +173,29 @@ class _AddpageState extends State<Addpage> {
         ],
       ),
     );
+  }
+
+  Future saveListBtn() async {
+    final itemName = groceryNameController.text.trim();
+    final itemquantity = quantityController.text.trim();
+    if (currentOption == null || itemName.isEmpty || itemquantity.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.cyanAccent,
+          content: Center(
+            child: Text(
+              'Please Fill All Fealds !!.',
+              style: TextStyle(
+                  color: const Color.fromARGB(255, 0, 0, 0), fontSize: 16),
+            ),
+          )));
+    } else {
+      final groseryData = GroceryListData(
+          groceryName: itemName,
+          quantity: itemquantity,
+          catocary: currentOption);
+      addGroseryData(groseryData);
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => Navigationbar()));
+    }
   }
 }

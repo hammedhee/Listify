@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         'navigation': (context) => Navigationbar(),
         'tearms': (context) => TermsAndConditionsPage(),
         'help': (context) => HelpPage(),
-        'fruitspage': (context) => Fruitslistpage(),
+        // 'fruitspage': (context) => Fruitslistpage(),
       },
     );
   }

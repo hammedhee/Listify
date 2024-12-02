@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:listify/view/fruitslistpage.dart';
 import 'package:lottie/lottie.dart';
 
 class Homescreen extends StatefulWidget {
@@ -66,13 +67,23 @@ class _HomescreenState extends State<Homescreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Fruitslistpage(
+                                          catogary: 'Vegetable')));
+                            },
                             child: homePageNavigationContainer(
                                 'Vegetable List', 'asset/veg for listyfy.png'),
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, 'fruitspage');
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          Fruitslistpage(catogary: 'Fruits')));
                             },
                             child: homePageNavigationContainer(
                                 'Fruits List', 'asset/fruits for listify.png'),
@@ -84,12 +95,24 @@ class _HomescreenState extends State<Homescreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          Fruitslistpage(catogary: 'Powders')));
+                            },
                             child: homePageNavigationContainer('Powders List',
                                 'asset/for_home-removebg-preview.png'),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          Fruitslistpage(catogary: 'Others')));
+                            },
                             child: homePageNavigationContainer(
                                 'Other Items List',
                                 'asset/groceries-png-for_listify_home-removebg-preview.png'),

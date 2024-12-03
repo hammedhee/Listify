@@ -14,8 +14,9 @@ import 'package:listify/view/tearmsAndConditionpage.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  Hive.registerAdapter(UsreDataAdapter());
-  Hive.registerAdapter(GroceryListDataAdapter());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+ 
   runApp(MyApp());
 }
 

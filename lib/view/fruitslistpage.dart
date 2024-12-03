@@ -35,7 +35,10 @@ class _FruitslistpageState extends State<Fruitslistpage> {
 
             if (cato.isEmpty) {
               return Center(
-                child: Text("no data"),
+                child: Text(
+                  "No List",
+                  style: TextStyle(fontSize: 20),
+                ),
               );
             }
             return ListView.builder(
@@ -51,7 +54,7 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                           padding: const EdgeInsets.all(18.0),
                           child: ExpansionTile(
                             backgroundColor:
-                                const Color.fromARGB(255, 255, 244, 203),
+                                const Color.fromARGB(255, 255, 226, 193),
                             title: Center(
                                 child: Text(
                               data.groceryName!,

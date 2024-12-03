@@ -130,7 +130,7 @@ class _HelpPageState extends State<HelpPage> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                 
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 124, 218, 255),

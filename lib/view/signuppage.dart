@@ -250,6 +250,7 @@ class _SignuppageState extends State<Signuppage> {
           phoneNumber: phone,
           mailId: email);
       addUserData(data);
+      print('yeeeeeeeeses');
       await prefs.setString('username', username);
       await prefs.setString('password', password);
       await prefs.setBool('isLoggedIn', true);

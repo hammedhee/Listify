@@ -17,16 +17,24 @@ class _ProfilepageState extends State<Profilepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.person),
-        title: Text("ACCOUNT'S"),
+        leading: const Icon(Icons.person),
+        title: const Text("ACCOUNT'S"),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Center(
-              child: ValueListenableBuilder(
+              child: ValueListenableBuilder<List<UsreData>>(
                 valueListenable: userDataNotifire,
                 builder: (context, value, child) {
+                  if (value.isEmpty) {
+                    return const Text(
+                      'NO USER DETAILS',
+                      style: TextStyle(fontSize: 18, color: Colors.red),
+                    );
+                  }
+
+                  final user = value.first; // Access the first user safely
                   return Container(
                     width: 320,
                     child: Card(
@@ -47,40 +55,40 @@ class _ProfilepageState extends State<Profilepage> {
                                         'asset/new_defalt_profile_image_for-removebg-preview.png'),
                                   ),
                                 ),
-                                Gap(10),
+                                const Gap(10),
                                 Text(
-                                  value.first.userName.toString(),
-                                  style: TextStyle(fontSize: 17),
+                                  user.userName.toString(),
+                                  style: const TextStyle(fontSize: 17),
                                 ),
                               ],
                             ),
-                            Gap(10),
+                            const Gap(10),
                             ExpansionTile(
-                              title: Text('Password'),
+                              title: const Text('Password'),
                               children: [
                                 Text(
-                                  value.first.passWord.toString(),
-                                  style: TextStyle(fontSize: 17),
+                                  user.passWord.toString(),
+                                  style: const TextStyle(fontSize: 17),
                                 ),
-                                Gap(10)
+                                const Gap(10)
                               ],
                             ),
-                            Gap(10),
+                            const Gap(10),
                             ExpansionTile(
-                              title: Text('Mail Address'),
+                              title: const Text('Mail Address'),
                               children: [
-                                Text('E-Mail Address'),
-                                Text(value.first.mailId.toString()),
-                                Gap(10)
+                                const Text('E-Mail Address'),
+                                Text(user.mailId.toString()),
+                                const Gap(10)
                               ],
                             ),
-                            Gap(10),
+                            const Gap(10),
                             ExpansionTile(
-                              title: Text('Mobile Number'),
+                              title: const Text('Mobile Number'),
                               children: [
-                                Text('Mobile Number'),
-                                Text(value.first.phoneNumber.toString()),
-                                Gap(10)
+                                const Text('Mobile Number'),
+                                Text(user.phoneNumber.toString()),
+                                const Gap(10)
                               ],
                             ),
                           ],
@@ -91,7 +99,7 @@ class _ProfilepageState extends State<Profilepage> {
                 },
               ),
             ),
-            Gap(30),
+            const Gap(30),
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: Row(
@@ -108,7 +116,7 @@ class _ProfilepageState extends State<Profilepage> {
                           onPressed: () {
                             Navigator.pushNamed(context, "help");
                           },
-                          child: Text(
+                          child: const Text(
                             "Help",
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
@@ -128,7 +136,7 @@ class _ProfilepageState extends State<Profilepage> {
                           onPressed: () {
                             logutbtn();
                           },
-                          child: Text(
+                          child: const Text(
                             "Sign out ",
                             style: TextStyle(
                                 color: Colors.redAccent,
@@ -142,7 +150,7 @@ class _ProfilepageState extends State<Profilepage> {
                 ],
               ),
             ),
-            Gap(10),
+            const Gap(10),
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: Container(
@@ -156,7 +164,7 @@ class _ProfilepageState extends State<Profilepage> {
                       onPressed: () {
                         Navigator.pushNamed(context, "tearms");
                       },
-                      child: Text(
+                      child: const Text(
                         "Terms & Condition",
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
@@ -166,22 +174,13 @@ class _ProfilepageState extends State<Profilepage> {
                 ),
               ),
             ),
-            // TextButton(
-            //     onPressed: () {
-            //       Navigator.push(
-            //           context,
-            //           MaterialPageRoute(
-            //             builder: (context) => Loginpage(),
-            //           ));
-            //     },
-            //     child: Text('login'))
           ],
         ),
       ),
     );
   }
 
-  Future logutbtn() async {
+  Future<void> logutbtn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final userDataBox = await Hive.openBox<UsreData>('userdeteals');
     prefs.setBool('isLoggedIn', false);

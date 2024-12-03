@@ -1,6 +1,5 @@
 import 'package:hive/hive.dart';
-
-part 'groceryList.g.dart';
+ part 'groceryList.g.dart';
 @HiveType(typeId: 1)
 class GroceryListData {
   @HiveField(0)

@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:listify/function/userdatafunctions.dart';
-import 'package:listify/model/userdataModel.dart';
+ import 'package:listify/model/userdataModel.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -14,6 +14,13 @@ class Profilepage extends StatefulWidget {
 
 class _ProfilepageState extends State<Profilepage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getAllUserData();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -34,7 +41,7 @@ class _ProfilepageState extends State<Profilepage> {
                     );
                   }
 
-                  final user = value.first; // Access the first user safely
+                  final user = value.first;
                   return Container(
                     width: 320,
                     child: Card(

@@ -13,7 +13,7 @@ class Navigationbar extends StatefulWidget {
 }
 
 class _NavigationbarState extends State<Navigationbar> {
-  int CurruntIndex = 0;
+  int CurruntIndex = 0 ;
   final List<Widget> pagesForNavigation = [
     Homescreen(),
     Addpage(),

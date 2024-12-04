@@ -1,38 +1,44 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'groceryList.dart';
+part of 'userdataModel.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class GroceryListDataAdapter extends TypeAdapter<GroceryListData> {
+class UsreDataAdapter extends TypeAdapter<UsreData> {
   @override
-  final int typeId = 2;
+  final int typeId = 1;
 
   @override
-  GroceryListData read(BinaryReader reader) {
+  UsreData read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return GroceryListData(
-      groceryName: fields[0] as String?,
-      quantity: fields[1] as String?,
-      catocary: fields[2] as String?,
+    return UsreData(
+      userName: fields[0] as String?,
+      passWord: fields[1] as String?,
+      phoneNumber: fields[2] as String?,
+      mailId: fields[3] as String?,
+      profileimagepath: fields[4] as String?,
     );
   }
 
   @override
-  void write(BinaryWriter writer, GroceryListData obj) {
+  void write(BinaryWriter writer, UsreData obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(5)
       ..writeByte(0)
-      ..write(obj.groceryName)
+      ..write(obj.userName)
       ..writeByte(1)
-      ..write(obj.quantity)
+      ..write(obj.passWord)
       ..writeByte(2)
-      ..write(obj.catocary);
+      ..write(obj.phoneNumber)
+      ..writeByte(3)
+      ..write(obj.mailId)
+      ..writeByte(4)
+      ..write(obj.profileimagepath);
   }
 
   @override
@@ -41,7 +47,7 @@ class GroceryListDataAdapter extends TypeAdapter<GroceryListData> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is GroceryListDataAdapter &&
+      other is UsreDataAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

@@ -1,7 +1,8 @@
 import 'package:hive/hive.dart';
-    
 
-@HiveType(typeId: 2)
+part 'userdataModel.g.dart';
+
+@HiveType(typeId: 1)
 class UsreData {
   @HiveField(0)
   String? userName;

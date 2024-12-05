@@ -19,7 +19,7 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget { 
   const MyApp({super.key});
 
   @override
@@ -33,8 +33,7 @@ class MyApp extends StatelessWidget {
         'signup': (context) => Signuppage(),
         'navigation': (context) => Navigationbar(),
         'tearms': (context) => TermsAndConditionsPage(),
-        'help': (context) => HelpPage(),
-        // 'fruitspage': (context) => Fruitslistpage(),
+        'help': (context) => HelpPage(),      
       },
     );
   }

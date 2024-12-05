@@ -20,19 +20,22 @@ class GroceryListDataAdapter extends TypeAdapter<GroceryListData> {
       groceryName: fields[0] as String?,
       quantity: fields[1] as String?,
       catocary: fields[2] as String?,
+      value: fields[3] as bool?,
     );
   }
 
   @override
   void write(BinaryWriter writer, GroceryListData obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.groceryName)
       ..writeByte(1)
       ..write(obj.quantity)
       ..writeByte(2)
-      ..write(obj.catocary);
+      ..write(obj.catocary)
+      ..writeByte(3)
+      ..write(obj.value);
   }
 
   @override

@@ -189,8 +189,8 @@ class _AddpageState extends State<Addpage> {
             ),
           )));
     } else {
-    
       final groseryData = GroceryListData(
+          value: false,
           groceryName: itemName,
           quantity: itemquantity,
           catocary: currentOption);

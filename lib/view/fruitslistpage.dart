@@ -46,7 +46,7 @@ class _FruitslistpageState extends State<Fruitslistpage> {
           return ListView.builder(
             itemCount: filteredList.length,
             itemBuilder: (context, index) {
-              final data = filteredList[index];
+              final data = filteredList[index]; 
               final isCompleted = data.value == true;
 
               return Padding(

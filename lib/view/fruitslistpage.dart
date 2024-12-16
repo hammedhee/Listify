@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:listify/function/groseryListFunctions.dart';
@@ -46,8 +48,8 @@ class _FruitslistpageState extends State<Fruitslistpage> {
           return ListView.builder(
             itemCount: filteredList.length,
             itemBuilder: (context, index) {
-              final data = filteredList[index]; 
-              final isCompleted = data.value == true;
+              final data = filteredList[index];
+              final isCompleted = data.value;
 
               return Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -91,6 +93,7 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                                         groupValue: isCompleted,
                                         onChanged: (value) {
                                           setState(() {
+                                            log(value.toString());
                                             final updatedData = GroceryListData(
                                               groceryName: data.groceryName,
                                               quantity: data.quantity,
@@ -111,6 +114,7 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                                         groupValue: isCompleted,
                                         onChanged: (value) {
                                           setState(() {
+                                            log(value.toString());
                                             final updatedData = GroceryListData(
                                               groceryName: data.groceryName,
                                               quantity: data.quantity,

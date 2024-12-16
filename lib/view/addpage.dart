@@ -195,8 +195,13 @@ class _AddpageState extends State<Addpage> {
           quantity: itemquantity,
           catocary: currentOption);
       addGroseryData(groseryData);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Navigationbar()));
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        'navigation',
+        (route) {
+          return true;
+        },
+      );
     }
   }
 }

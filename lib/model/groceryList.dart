@@ -10,10 +10,10 @@ class GroceryListData {
   @HiveField(2)
   String? catocary;
   @HiveField(3)
-  bool? value;
+  bool? value = false;
   GroceryListData(
       {required this.groceryName,
       required this.quantity,
       required this.catocary,
-      required this.value});
+      this.value});
 }

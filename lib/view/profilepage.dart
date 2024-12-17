@@ -15,7 +15,6 @@ class Profilepage extends StatefulWidget {
 class _ProfilepageState extends State<Profilepage> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getAllUserData();
   }

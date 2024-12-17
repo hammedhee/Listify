@@ -178,30 +178,32 @@ class _AddpageState extends State<Addpage> {
   Future saveListBtn() async {
     final itemName = groceryNameController.text.trim();
     final itemquantity = quantityController.text.trim();
+
+    // Check if the form fields are valid
     if (currentOption == null || itemName.isEmpty || itemquantity.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          backgroundColor: Colors.cyanAccent,
-          content: Center(
-            child: Text(
-              'Please Fill All Fealds !!.',
-              style: TextStyle(
-                  color: const Color.fromARGB(255, 0, 0, 0), fontSize: 16),
-            ),
-          )));
+        backgroundColor: Colors.cyanAccent,
+        content: Center(
+          child: Text(
+            'Please Fill All Fields !!',
+            style: TextStyle(
+                color: const Color.fromARGB(255, 0, 0, 0), fontSize: 16),
+          ),
+        ),
+      ));
     } else {
+      // Create GroceryListData object
       final groseryData = GroceryListData(
-        
-          groceryName: itemName,
-          quantity: itemquantity,
-          catocary: currentOption);
-      addGroseryData(groseryData);
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        'navigation',
-        (route) {
-          return true;
-        },
+        groceryName: itemName,
+        quantity: itemquantity,
+        catocary: currentOption,
       );
+
+      // Add the grocery data asynchronously
+      await addGroseryData(groseryData);
+
+      // Navigate to another screen
+      Navigator.pushReplacementNamed(context, 'navigation');
     }
   }
 }

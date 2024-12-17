@@ -14,10 +14,16 @@ class Fruitslistpage extends StatefulWidget {
 }
 
 class _FruitslistpageState extends State<Fruitslistpage> {
+  late List<GroceryListData> filteredList;
+
   @override
   void initState() {
     super.initState();
     getAllgroseryData();
+    filteredList = groseryListNotifyr.value
+        .where((item) => (item.catocary ?? '').toLowerCase() == 
+             (widget.catogary ?? '').toLowerCase())
+        .toList();
   }
 
   @override
@@ -30,13 +36,7 @@ class _FruitslistpageState extends State<Fruitslistpage> {
       body: ValueListenableBuilder(
         valueListenable: groseryListNotifyr,
         builder: (context, value, child) {
-          final filteredList = value
-              .where((item) =>
-                  (item.catocary ?? '').toLowerCase() ==
-                  (widget.catogary ?? '').toLowerCase())
-              .toList();
-
-          if (filteredList.isEmpty) {
+          if (value.isEmpty) {
             return const Center(
               child: Text(
                 "No List",
@@ -44,6 +44,12 @@ class _FruitslistpageState extends State<Fruitslistpage> {
               ),
             );
           }
+
+          filteredList = value
+              .where((item) =>
+                  (item.catocary ?? '').toLowerCase() ==
+                  (widget.catogary ?? '').toLowerCase())
+              .toList();
 
           return ListView.builder(
             itemCount: filteredList.length,
@@ -97,7 +103,6 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                                         value: true,
                                         groupValue: isCompleted,
                                         onChanged: (value) {
-                                          log("Updating ${data.groceryName} to Completed");
                                           final updatedData = GroceryListData(
                                             groceryName: data.groceryName,
                                             quantity: data.quantity,
@@ -116,7 +121,6 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                                         value: false,
                                         groupValue: isCompleted,
                                         onChanged: (value) {
-                                          log("Updating ${data.groceryName} to Not Completed");
                                           final updatedData = GroceryListData(
                                             groceryName: data.groceryName,
                                             quantity: data.quantity,
@@ -146,3 +150,4 @@ class _FruitslistpageState extends State<Fruitslistpage> {
     );
   }
 }
+  

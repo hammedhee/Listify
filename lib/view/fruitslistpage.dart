@@ -1,11 +1,8 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:listify/function/groseryListFunctions.dart';
 import 'package:listify/model/groceryList.dart';
-
-List<String> options = ["inCompleted", "completed"];
 
 class Fruitslistpage extends StatefulWidget {
   final String? catogary;
@@ -27,17 +24,20 @@ class _FruitslistpageState extends State<Fruitslistpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.line_style),
-        title: Text('Your List Of Fruits'),
+        leading: const Icon(Icons.line_style),
+        title: const Text('Your List Of Fruits'),
       ),
       body: ValueListenableBuilder(
         valueListenable: groseryListNotifyr,
         builder: (context, value, child) {
-          final filteredList =
-              value.where((item) => item.catocary == widget.catogary).toList();
+          final filteredList = value
+              .where((item) =>
+                  (item.catocary ?? '').toLowerCase() ==
+                  (widget.catogary ?? '').toLowerCase())
+              .toList();
 
           if (filteredList.isEmpty) {
-            return Center(
+            return const Center(
               child: Text(
                 "No List",
                 style: TextStyle(fontSize: 20),
@@ -60,7 +60,7 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                       title: Center(
                         child: Text(
                           data.groceryName ?? "",
-                          style: TextStyle(fontSize: 18),
+                          style: const TextStyle(fontSize: 18),
                         ),
                       ),
                       children: [
@@ -72,12 +72,17 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(data.quantity ?? ""),
+                                  Flexible(
+                                    child: Text(
+                                      data.quantity ?? "",
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
                                   IconButton(
                                     onPressed: () {
                                       deleteGroseryData(index);
                                     },
-                                    icon: Icon(Icons.delete),
+                                    icon: const Icon(Icons.delete),
                                   ),
                                 ],
                               ),
@@ -87,42 +92,38 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                                 children: [
                                   Row(
                                     children: [
-                                      Text('Completed'),
+                                      const Text('Completed'),
                                       Radio(
                                         value: true,
                                         groupValue: isCompleted,
                                         onChanged: (value) {
-                                          setState(() {
-                                            log(value.toString());
-                                            final updatedData = GroceryListData(
-                                              groceryName: data.groceryName,
-                                              quantity: data.quantity,
-                                              catocary: data.catocary,
-                                              value: value as bool,
-                                            );
-                                            editGrosery(index, updatedData);
-                                          });
+                                          log("Updating ${data.groceryName} to Completed");
+                                          final updatedData = GroceryListData(
+                                            groceryName: data.groceryName,
+                                            quantity: data.quantity,
+                                            catocary: data.catocary,
+                                            value: value as bool,
+                                          );
+                                          editGrosery(index, updatedData);
                                         },
                                       ),
                                     ],
                                   ),
                                   Row(
                                     children: [
-                                      Text('Not Completed'),
+                                      const Text('Not Completed'),
                                       Radio(
                                         value: false,
                                         groupValue: isCompleted,
                                         onChanged: (value) {
-                                          setState(() {
-                                            log(value.toString());
-                                            final updatedData = GroceryListData(
-                                              groceryName: data.groceryName,
-                                              quantity: data.quantity,
-                                              catocary: data.catocary,
-                                              value: value as bool,
-                                            );
-                                            editGrosery(index, updatedData);
-                                          });
+                                          log("Updating ${data.groceryName} to Not Completed");
+                                          final updatedData = GroceryListData(
+                                            groceryName: data.groceryName,
+                                            quantity: data.quantity,
+                                            catocary: data.catocary,
+                                            value: value as bool,
+                                          );
+                                          editGrosery(index, updatedData);
                                         },
                                       ),
                                     ],
@@ -134,7 +135,7 @@ class _FruitslistpageState extends State<Fruitslistpage> {
                         ),
                       ],
                     ),
-                    Gap(10),
+                    const Gap(10),
                   ],
                 ),
               );

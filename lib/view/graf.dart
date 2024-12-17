@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:listify/function/groseryListFunctions.dart';
 
 class Dashboard extends StatelessWidget {
@@ -7,6 +8,7 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getAllgroseryData();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -21,6 +23,23 @@ class Dashboard extends StatelessWidget {
         child: ValueListenableBuilder(
           valueListenable: groseryListNotifyr,
           builder: (context, value, child) {
+            if (groseryListNotifyr.value.isEmpty) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'No data available to display',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  Gap(5),
+                  Text(
+                    '🤨',
+                    style: TextStyle(fontSize: 35),
+                  )
+                ],
+              );
+            }
+
             final completed = value.where((eee) => eee.value == true).toList();
             final NotCompleted =
                 value.where((eee) => eee.value == false).toList();
@@ -28,9 +47,9 @@ class Dashboard extends StatelessWidget {
               PieChartData(
                   sections: [
                     PieChartSectionData(
-                      color: const Color.fromARGB(255, 170, 0, 255),
+                      color: const Color.fromARGB(255, 21, 255, 0),
                       value: completed.length.toDouble(),
-                      title: 'Completed',
+                      title: '${completed.length}',
                       titleStyle: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
@@ -38,7 +57,7 @@ class Dashboard extends StatelessWidget {
                       radius: 100,
                     ),
                     PieChartSectionData(
-                      color: const Color.fromARGB(255, 34, 0, 255),
+                      color: const Color.fromARGB(255, 255, 179, 0),
                       value: NotCompleted.length.toDouble(),
                       title: "${NotCompleted.length}",
                       titleStyle: TextStyle(

@@ -1,8 +1,12 @@
 import 'package:hive/hive.dart';
-part 'grafModel.g.dart';     
+part 'grafModel.g.dart';
+
 @HiveType(typeId: 3)
 class GrafListData {
   @HiveField(0)
-  bool? grafValue;
-  GrafListData({required this.grafValue});
+  String? completed;
+  @HiveField(1)
+  String? notcomplete;
+  GrafListData({ this.completed, this.notcomplete});
+  
 }

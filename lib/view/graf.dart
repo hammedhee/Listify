@@ -1,14 +1,14 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:listify/function/groseryListFunctions.dart';
+import 'package:listify/function/graffunction.dart';
 
 class Dashboard extends StatelessWidget {
   Dashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    getAllgroseryData();
+    getGrafData();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -54,9 +54,9 @@ class Dashboard extends StatelessWidget {
           ),
           Expanded(
             child: ValueListenableBuilder(
-              valueListenable: groseryListNotifyr,
+              valueListenable: grafnotyfire,
               builder: (context, value, child) {
-                if (groseryListNotifyr.value.isEmpty) {
+                if (grafnotyfire.value.isEmpty) {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -74,9 +74,10 @@ class Dashboard extends StatelessWidget {
                 }
 
                 final completed =
-                    value.where((eee) => eee.value == true).toList();
-                final NotCompleted =
-                    value.where((eee) => eee.value == false).toList();
+                    value.where((eee) => eee.completed == 'Completed').toList();
+                final NotCompleted = value
+                    .where((eee) => eee.notcomplete == 'UnCompleted')
+                    .toList();
                 return PieChart(
                   PieChartData(
                       sections: [

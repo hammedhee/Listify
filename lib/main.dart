@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:listify/model/grafModel.dart';
 import 'package:listify/model/groceryList.dart';
 import 'package:listify/model/userdataModel.dart';
 //import 'package:listify/model/userdataModel.dart';
@@ -16,10 +17,11 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(UsreDataAdapter());
   Hive.registerAdapter(GroceryListDataAdapter());
+  Hive.registerAdapter(GrafListDataAdapter());
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget { 
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
         'signup': (context) => Signuppage(),
         'navigation': (context) => Navigationbar(),
         'tearms': (context) => TermsAndConditionsPage(),
-        'help': (context) => HelpPage(),      
+        'help': (context) => HelpPage(),
       },
     );
   }

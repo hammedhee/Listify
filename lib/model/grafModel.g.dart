@@ -17,16 +17,19 @@ class GrafListDataAdapter extends TypeAdapter<GrafListData> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return GrafListData(
-      grafValue: fields[0] as bool?,
+      completed: fields[0] as String?,
+      notcomplete: fields[1] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, GrafListData obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.grafValue);
+      ..write(obj.completed)
+      ..writeByte(1)
+      ..write(obj.notcomplete);
   }
 
   @override

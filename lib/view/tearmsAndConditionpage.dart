@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:listify/function/graffunction.dart';
 
 class TermsAndConditionsPage extends StatefulWidget {
   const TermsAndConditionsPage({super.key});
@@ -104,7 +105,9 @@ class _TermsAndConditionsPageState extends State<TermsAndConditionsPage> {
               ),
               SizedBox(height: 10),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  cleargrafdata();
+                },
                 child: Text(
                   "Decline",
                   style: TextStyle(color: Colors.redAccent),

@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hive/hive.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:listify/function/userdatafunctions.dart';
 import 'package:listify/model/userdataModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,6 +16,7 @@ class Profilepage extends StatefulWidget {
 }
 
 class _ProfilepageState extends State<Profilepage> {
+  File? image;
   @override
   void initState() {
     super.initState();
@@ -57,9 +61,8 @@ class _ProfilepageState extends State<Profilepage> {
                                       const Color.fromARGB(255, 144, 56, 185),
                                   radius: 35,
                                   child: Center(
-                                    child: Image.asset(
-                                        'asset/new_defalt_profile_image_for-removebg-preview.png'),
-                                  ),
+                                      child: Image.asset(
+                                          'asset/new_defalt_profile_image_for-removebg-preview.png')),
                                 ),
                                 const Gap(10),
                                 Text(
